@@ -1,13 +1,22 @@
-# tests/perception/test_perception.py
+# src/perception/perception.py
 
-from src.perception.perception import PerceptionModule
-# from perception.perception import PerceptionModule
+import logging
 
-def test_process_returns_same_data():
-    """
-    """
-    pm = PerceptionModule()
-    input_data = [1, 2, 3]
-    output = pm.process(input_data)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
-    assert output == input_data, "Saída não CORRESPONDENTE!"
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+class PerceptionModule:
+    def __init__(self):
+        logger.info("PerceptionModule inicializado.")
+
+    def process(self, data):
+        logger.info(f"Processando dados de entrada: {data}")
+        result = data  # Em versões futuras, haverá pré-processamento aqui
+        logger.info(f"Resultado do processamento: {result}")
+        return result
