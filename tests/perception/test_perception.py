@@ -1,22 +1,9 @@
-# src/perception/perception.py
+# tests/perception/test_perception.py
 
-import logging
+from src.perception.perception import PerceptionModule
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-
-if not logger.handlers:
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-
-class PerceptionModule:
-    def __init__(self):
-        logger.info("PerceptionModule inicializado.")
-
-    def process(self, data):
-        logger.info(f"Processando dados de entrada: {data}")
-        result = data  # Em versões futuras, haverá pré-processamento aqui
-        logger.info(f"Resultado do processamento: {result}")
-        return result
+def test_process_returns_input():
+    module = PerceptionModule()
+    input_data = "teste"
+    output = module.process(input_data)
+    assert output == input_data
